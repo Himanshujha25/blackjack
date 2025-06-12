@@ -369,7 +369,7 @@ button:disabled:hover {
   button {
     width: 100%;
     max-width: 200px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
   
   .win, .win-player {
