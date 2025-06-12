@@ -1,4 +1,4 @@
-/* RESET + BASE ==================================== */
+/* RESET & BASE STYLES ======================== */
 * {
   margin: 0;
   padding: 0;
@@ -10,11 +10,12 @@ html, body {
   width: 100%;
   height: 100%;
   font-size: 16px;
-  background-image: url("blackjack.png");
+  background-image: url('blackjack.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #fff;
+  overflow-x: hidden;
 }
 
 /* LAYOUT ==================================== */
@@ -22,17 +23,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 10px;
 }
 
 /* HEADER ==================================== */
 header {
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   text-align: center;
+  width: 100%;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   color: #f0f0f0;
   animation: glow 1.5s infinite alternate;
   margin-bottom: 20px;
@@ -49,67 +53,84 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
+  justify-content: flex-start;
+  padding: 10px;
   width: 100%;
-  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* WIN BOXES ================================= */
-.win, .win-player {
+.win{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 193, 7, 0.85);
+  border-radius: 8px;
+  width: clamp(120px, 20vw, 140px);
+  height: clamp(50px, 8vw, 60px);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.win-player {
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 123, 255, 0.85);
   border-radius: 8px;
-  width: 140px;
-  height: 60px;
-  font-size: 1.1rem;
+  width: clamp(120px, 20vw, 140px);
+  height: clamp(50px, 8vw, 60px);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   font-weight: bold;
   color: white;
-  position: absolute;
-  top: 30px;
-}
-
-.win {
-  right: 10%;
-}
-
-.win-player {
-  left: 10%;
+  margin-bottom: 10px;
+  backdrop-filter: blur(10px);
 }
 
 .totalwin-p, .totalwin-d {
   text-align: center;
+  white-space: nowrap;
 }
 
 /* PLAYERS AREA ============================== */
 .players {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   width: 100%;
-  max-width: 1000px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  position: relative;
 }
 
 .player {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.95);
   border: 2px solid #333;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 20px;
   flex: 1;
-  min-width: 300px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 280px;
+  max-width: 450px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+}
+
+.player:hover {
+  transform: translateY(-5px);
 }
 
 .player h2 {
   color: #333;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 15px;
 }
 
@@ -120,20 +141,20 @@ h1 {
   flex-wrap: wrap;
   min-height: 80px;
   margin-bottom: 15px;
+  gap: 8px;
 }
 
 .card {
   background-color: white;
-  border: 1px solid #aaa;
+  border: 2px solid #333;
   color: black;
-  padding: 12px 16px;
-  margin: 6px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  border-radius: 12px;
   font-weight: bold;
-  font-size: 1.3rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  width: 50px;
-  height: 70px;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  width: clamp(40px, 8vw, 50px);
+  height: clamp(60px, 12vw, 70px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,7 +163,7 @@ h1 {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) rotate(2deg);
 }
 
 .card.red {
@@ -151,17 +172,19 @@ h1 {
 
 /* SCORE BOX ================================= */
 .score {
-  background-color: #eaeaea;
-  border-radius: 8px;
-  height: 50px;
-  width: 150px;
-  font-size: 1.2em;
+  background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  height: clamp(45px, 8vw, 50px);
+  width: clamp(140px, 25vw, 150px);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* CONTROLS / BUTTONS ========================= */
@@ -171,88 +194,242 @@ h1 {
   gap: 15px;
   margin-bottom: 30px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 button {
-  padding: 12px 25px;
-  font-size: 1rem;
+  padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 25px);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  min-width: 80px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button:disabled:hover {
+  background-color: #6c757d;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 #btn-start {
-  background-color: #28a745;
-  width: 200px;
-  font-size: 1.2rem;
+  background: linear-gradient(135deg, #28a745, #34ce57);
+  width: clamp(150px, 30vw, 200px);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
 #btn-start:hover {
-  background-color: #218838;
+  background: linear-gradient(135deg, #218838, #28a745);
 }
 
 #btn-reset {
-  background-color: #dc3545;
-  width: 200px;
-  font-size: 1.2rem;
+  background: linear-gradient(135deg, #dc3545, #e74c3c);
+  width: clamp(150px, 30vw, 200px);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
 #btn-reset:hover {
-  background-color: #c82333;
+  background: linear-gradient(135deg, #c82333, #dc3545);
 }
 
 .start-button {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 /* RESULT ==================================== */
 .result {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: bold;
   color: #f0f0f0;
   min-height: 40px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* MEDIA QUERIES ============================= */
+/* RESPONSIVE BREAKPOINTS ==================== */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+  .players {
+    gap: 15px;
+  }
+  
+  .player {
+    min-width: 260px;
+    padding: 15px;
+  }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
+  body {
+    padding: 5px;
+  }
+  
+  .game-container {
+    padding: 5px;
+  }
+  
+  header {
+    margin-bottom: 20px;
+  }
+  
   .players {
     flex-direction: column;
     align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
   }
 
   .player {
-    width: 90%;
+    width: 100%;
+    max-width: 400px;
+    min-width: unset;
+    padding: 15px;
+  }
+  
+  .win, .win-player {
+    position: static;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 200px;
   }
 
   .controls {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .start-button {
+    margin-top: 15px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  body {
+    padding: 2px;
+  }
+  
+  .game-container {
+    padding: 2px;
+  }
+  
+  .player {
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .cards {
+    gap: 4px;
+    min-height: 70px;
+  }
+  
+  .card {
+    width: clamp(35px, 10vw, 45px);
+    height: clamp(50px, 14vw, 65px);
+    padding: 4px 8px;
+    font-size: clamp(0.8rem, 3vw, 1.1rem);
+  }
+  
+  .controls {
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0 10px;
   }
 
   button {
-    width: 90%;
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 5px;
+  }
+  
+  .win, .win-player {
+    width: 100%;
+    max-width: 180px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    height: clamp(40px, 10vw, 50px);
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px) {
+  .cards {
+    gap: 2px;
+  }
+  
+  .card {
+    width: clamp(30px, 12vw, 40px);
+    height: clamp(45px, 16vw, 60px);
+  }
+  
+  .player {
+    padding: 10px;
+  }
+  
+  .controls {
+    padding: 0 5px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  body {
+    justify-content: flex-start;
+    padding-top: 5px;
+  }
+  
+  header {
     margin-bottom: 10px;
   }
-
-  .score {
-    width: 90%;
-    margin-top: 10px;
+  
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 10px;
   }
-
-  .win, .win-player {
-    position: static;
-    margin-top: 10px;
-    width: 80%;
+  
+  .players {
+    flex-direction: row;
+    margin-bottom: 15px;
+  }
+  
+  .player {
+    padding: 10px;
+  }
+  
+  .cards {
+    min-height: 60px;
+  }
+  
+  .controls {
+    margin-bottom: 15px;
   }
 }

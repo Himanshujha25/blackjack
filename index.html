@@ -1,62 +1,61 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blackjack</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="game-container">
-
     <header>
-      <h1>Blackjack Game</h1>
-      
+        <h1>Blackjack Game</h1>
     </header>
 
-    <section class="players">
+    <div class="game-container">
+        <!-- Win Boxes -->
+        <div class="win-player">
+            <div class="totalwin-p">Player Wins: <span id="player-wins">0</span></div>
+        </div>
+        <div class="win">
+            <div class="totalwin-d">Dealer Wins: <span id="dealer-wins">0</span></div>
+        </div>
 
-      <!-- Player Section -->
-       <div class="win-player"><div class="totalwin-p">Player win:1</div></div>
-      <div class="player player-human">
-        <h2>Player</h2>
-         <p class="score" id="player-score">Score: 0</p>
-        <div class="cards" id="player-cards"></div>
-        
-       
-      </div>
+        <!-- Players Area -->
+        <div class="players">
+            <!-- Player Section -->
+            <div class="player">
+                <h2>Player</h2>
+                <div class="cards" id="player-cards">
+                    <!-- Player cards will be added here dynamically -->
+                </div>
+                <div class="score" id="player-score">Score: 0</div>
+            </div>
 
-      <!-- Dealer Section -->
-   
-      <div class="player player-dealer">
-            <div class="win">  <div class="totalwin-d">dealer win:2</div></div>
-        <h2>Dealer</h2>
-            <p class="score" id="dealer-score">Score: 0</p>
-        <div class="cards" id="dealer-cards"></div>
-   
-      </div>
+            <!-- Dealer Section -->
+            <div class="player">
+                <h2>Dealer</h2>
+                <div class="cards" id="dealer-cards">
+                    <!-- Dealer cards will be added here dynamically -->
+                </div>
+                <div class="score" id="dealer-score">Score: 0</div>
+            </div>
+        </div>
 
-    </section>
+        <!-- Game Controls -->
+        <div class="controls">
+            <button id="btn-hit">Hit</button>
+            <button id="btn-stand">Stand</button>
+            <button id="btn-reset">Reset Game</button>
+        </div>
 
-    <!-- Controls -->
-    <section class="controls">
-      <button id="btn-hit">Hit</button>
-      <button id="btn-stand">Stand</button>
-      <button id="btn-reset">Reset</button>
-      <div class="start-button">
-  <button id="btn-start">Start</button>
-      </div>
-    
-    </section>
+        <!-- Start Button -->
+        <div class="start-button">
+            <button id="btn-start">Start New Game</button>
+        </div>
 
-
-    <!-- Result Message -->
-    <section class="result">
-      <p id="result-message"></p>
-    </section>
-
-  </main>
-
-  <script src="script.js"></script>
+        <!-- Game Result -->
+        <div class="result" id="game-result">
+            <!-- Game results will be displayed here -->
+        </div>
+    </div>
 </body>
 </html>
