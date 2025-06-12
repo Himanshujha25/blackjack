@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +14,13 @@
 
     <div class="game-container">
         <!-- Win Boxes -->
-        <div class="win-player">
-            <div class="totalwin-p">Player Wins: <span id="player-wins">0</span></div>
-        </div>
-        <div class="win">
-            <div class="totalwin-d">Dealer Wins: <span id="dealer-wins">0</span></div>
+        <div class="win-stats">
+            <div class="win-player">
+                <div class="totalwin-p">Player Wins: <span id="player-wins">0</span></div>
+            </div>
+            <div class="win">
+                <div class="totalwin-d">Dealer Wins: <span id="dealer-wins">0</span></div>
+            </div>
         </div>
 
         <!-- Players Area -->
@@ -43,22 +46,28 @@
 
         <!-- Game Controls -->
         <div class="controls">
-            <button id="btn-hit">Hit</button>
-            <button id="btn-stand">Stand</button>
-            <button id="btn-reset">Reset Game</button>
+            <button id="btn-hit">Hit (H)</button>
+            <button id="btn-stand">Stand (S)</button>
+            <button id="btn-reset">Reset (R)</button>
         </div>
 
         <!-- Start Button -->
         <div class="start-button">
-            <button id="btn-start">Start New Game</button>
+            <button id="btn-start">Start New Game (Space)</button>
         </div>
 
         <!-- Game Result -->
-        <div class="result" id="game-result">
-            <!-- Game results will be displayed here -->
+        <div class="result" id="result-message">
+            Press "Start New Game" to begin!
         </div>
 
+        <!-- Instructions -->
+        <div class="instructions">
+            <p><strong>How to Play:</strong> Get as close to 21 as possible without going over. Face cards = 10, Ace = 11 or 1</p>
+            <p><strong>Keyboard Shortcuts:</strong> Space = Start, H = Hit, S = Stand, R = Reset</p>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

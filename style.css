@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 html, body {
@@ -14,6 +14,7 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #fff;
   overflow-x: hidden;
 }
@@ -30,22 +31,23 @@ body {
 
 /* HEADER ==================================== */
 header {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: center;
   width: 100%;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   color: #f0f0f0;
-  animation: glow 1.5s infinite alternate;
-  margin-bottom: 20px;
+  animation: glow 2s infinite alternate;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 @keyframes glow {
-  0% { text-shadow: 0 0 5px #007bff; }
-  50% { text-shadow: 0 0 20px #007bff; }
-  100% { text-shadow: 0 0 40px #007bff; }
+  0% { text-shadow: 0 0 5px #007bff, 2px 2px 4px rgba(0,0,0,0.8); }
+  50% { text-shadow: 0 0 20px #007bff, 2px 2px 4px rgba(0,0,0,0.8); }
+  100% { text-shadow: 0 0 40px #007bff, 2px 2px 4px rgba(0,0,0,0.8); }
 }
 
 /* GAME CONTAINER ============================ */
@@ -60,36 +62,41 @@ h1 {
   margin: 0 auto;
 }
 
-/* WIN BOXES ================================= */
-.win{
+/* WIN STATISTICS ============================ */
+.win-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.win, .win-player {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 193, 7, 0.85);
-  border-radius: 8px;
-  width: clamp(120px, 20vw, 140px);
+  border-radius: 12px;
+  width: clamp(150px, 25vw, 200px);
   height: clamp(50px, 8vw, 60px);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   font-weight: bold;
   color: white;
-  margin-bottom: 10px;
   backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
 }
 
 .win-player {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 123, 255, 0.85);
-  border-radius: 8px;
-  width: clamp(120px, 20vw, 140px);
-  height: clamp(50px, 8vw, 60px);
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  font-weight: bold;
-  color: white;
-  margin-bottom: 10px;
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 86, 179, 0.9));
+}
+
+.win {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.9), rgba(255, 143, 0, 0.9));
+}
+
+.win:hover, .win-player:hover {
+  transform: translateY(-2px);
 }
 
 .totalwin-p, .totalwin-d {
@@ -105,33 +112,34 @@ h1 {
   gap: 20px;
   width: 100%;
   margin-bottom: 30px;
-  position: relative;
 }
 
 .player {
-  background-color: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95));
   border: 2px solid #333;
   border-radius: 15px;
   padding: 20px;
   flex: 1;
   min-width: 280px;
   max-width: 450px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   align-items: center;
   backdrop-filter: blur(5px);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .player:hover {
   transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
 .player h2 {
   color: #333;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 /* CARDS ===================================== */
@@ -142,10 +150,11 @@ h1 {
   min-height: 80px;
   margin-bottom: 15px;
   gap: 8px;
+  padding: 10px;
 }
 
 .card {
-  background-color: white;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
   border: 2px solid #333;
   color: black;
   padding: 8px 12px;
@@ -159,32 +168,58 @@ h1 {
   align-items: center;
   justify-content: center;
   font-family: 'Georgia', serif;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: dealCard 0.5s ease-out;
+}
+
+@keyframes dealCard {
+  0% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 .card:hover {
   transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
 }
 
 .card.red {
-  color: red;
+  color: #dc3545;
 }
 
 /* SCORE BOX ================================= */
 .score {
-  background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
-  border: 2px solid #ddd;
+  background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+  border: 2px solid #dee2e6;
   border-radius: 10px;
-  height: clamp(45px, 8vw, 50px);
-  width: clamp(140px, 25vw, 150px);
+  height: clamp(45px, 8vw, 55px);
+  width: clamp(140px, 25vw, 160px);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.score.bust {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  border-color: #bd2130;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 /* CONTROLS / BUTTONS ========================= */
@@ -192,7 +227,7 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
   width: 100%;
 }
@@ -202,17 +237,34 @@ button {
   font-size: clamp(0.9rem, 2.5vw, 1rem);
   border: none;
   border-radius: 8px;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
-  min-width: 80px;
+  min-width: 100px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #0056b3, #004085);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
@@ -222,52 +274,104 @@ button:active {
 }
 
 button:disabled {
-  background-color: #6c757d;
+  background: linear-gradient(135deg, #6c757d, #5a6268);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 button:disabled:hover {
-  background-color: #6c757d;
+  background: linear-gradient(135deg, #6c757d, #5a6268);
   transform: none;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 #btn-start {
-  background: linear-gradient(135deg, #28a745, #34ce57);
-  width: clamp(150px, 30vw, 200px);
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  width: clamp(180px, 35vw, 250px);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
+  padding: clamp(12px, 2.5vw, 15px) clamp(25px, 5vw, 30px);
 }
 
 #btn-start:hover {
-  background: linear-gradient(135deg, #218838, #28a745);
+  background: linear-gradient(135deg, #1e7e34, #155724);
 }
 
 #btn-reset {
-  background: linear-gradient(135deg, #dc3545, #e74c3c);
-  width: clamp(150px, 30vw, 200px);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  background: linear-gradient(135deg, #dc3545, #c82333);
 }
 
 #btn-reset:hover {
-  background: linear-gradient(135deg, #c82333, #dc3545);
+  background: linear-gradient(135deg, #c82333, #bd2130);
 }
 
 .start-button {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
 /* RESULT ==================================== */
 .result {
   text-align: center;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-weight: bold;
   color: #f0f0f0;
-  min-height: 40px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  min-height: 50px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.result.win {
+  color: #28a745;
+  background: rgba(40, 167, 69, 0.2);
+  border-color: rgba(40, 167, 69, 0.5);
+  animation: pulse 0.5s ease-in-out;
+}
+
+.result.lose {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.2);
+  border-color: rgba(220, 53, 69, 0.5);
+}
+
+.result.draw {
+  color: #ffc107;
+  background: rgba(255, 193, 7, 0.2);
+  border-color: rgba(255, 193, 7, 0.5);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* INSTRUCTIONS ============================== */
+.instructions {
+  text-align: center;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: #e9ecef;
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2);
+  max-width: 600px;
+  margin-top: 10px;
+}
+
+.instructions p {
+  margin-bottom: 5px;
+}
+
+.instructions strong {
+  color: #ffc107;
 }
 
 /* RESPONSIVE BREAKPOINTS ==================== */
@@ -282,6 +386,10 @@ button:disabled:hover {
     min-width: 260px;
     padding: 15px;
   }
+  
+  .win-stats {
+    gap: 15px;
+  }
 }
 
 /* Tablets */
@@ -295,7 +403,7 @@ button:disabled:hover {
   }
   
   header {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   
   .players {
@@ -312,33 +420,38 @@ button:disabled:hover {
     padding: 15px;
   }
   
+  .win-stats {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
   .win, .win-player {
-    position: static;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 200px;
+    width: clamp(130px, 40vw, 180px);
+    height: clamp(45px, 8vw, 55px);
   }
 
   .controls {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .start-button {
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 
 /* Mobile Phones */
 @media (max-width: 480px) {
   body {
-    padding: 2px;
+    padding: 5px;
   }
   
   .game-container {
-    padding: 2px;
+    padding: 5px;
   }
   
   .player {
@@ -347,8 +460,9 @@ button:disabled:hover {
   }
   
   .cards {
-    gap: 4px;
+    gap: 5px;
     min-height: 70px;
+    padding: 8px;
   }
   
   .card {
@@ -361,7 +475,7 @@ button:disabled:hover {
   .controls {
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
     padding: 0 10px;
   }
@@ -369,21 +483,32 @@ button:disabled:hover {
   button {
     width: 100%;
     max-width: 200px;
-    margin-bottom: 0px;
+  }
+  
+  .win-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
   
   .win, .win-player {
     width: 100%;
-    max-width: 180px;
+    max-width: 200px;
     font-size: clamp(0.8rem, 2.5vw, 1rem);
     height: clamp(40px, 10vw, 50px);
+  }
+  
+  .instructions {
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    padding: 10px;
   }
 }
 
 /* Extra Small Phones */
 @media (max-width: 360px) {
   .cards {
-    gap: 2px;
+    gap: 3px;
+    padding: 5px;
   }
   
   .card {
@@ -413,7 +538,7 @@ button:disabled:hover {
   
   h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   
   .players {
@@ -429,7 +554,16 @@ button:disabled:hover {
     min-height: 60px;
   }
   
-  .controls {
-    margin-bottom: 15px;
+  .controls, .start-button {
+    margin-bottom: 10px;
+  }
+  
+  .result {
+    margin-bottom: 10px;
+  }
+  
+  .instructions {
+    margin-top: 5px;
+    padding: 10px;
   }
 }
