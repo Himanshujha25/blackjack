@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <main class="game-container">
+
+    <header>
+      <h1>Blackjack Game</h1>
+      
+    </header>
+
+    <section class="players">
+
+      <!-- Player Section -->
+       <div class="win-player"><div class="totalwin-p">Player win:1</div></div>
+      <div class="player player-human">
+        <h2>Player</h2>
+         <p class="score" id="player-score">Score: 0</p>
+        <div class="cards" id="player-cards"></div>
+        
+       
+      </div>
+
+      <!-- Dealer Section -->
+   
+      <div class="player player-dealer">
+            <div class="win">  <div class="totalwin-d">dealer win:2</div></div>
+        <h2>Dealer</h2>
+            <p class="score" id="dealer-score">Score: 0</p>
+        <div class="cards" id="dealer-cards"></div>
+   
+      </div>
+
+    </section>
+
+    <!-- Controls -->
+    <section class="controls">
+      <button id="btn-hit">Hit</button>
+      <button id="btn-stand">Stand</button>
+      <button id="btn-reset">Reset</button>
+      <div class="start-button">
+  <button id="btn-start">Start</button>
+      </div>
+    
+    </section>
+
+
+    <!-- Result Message -->
+    <section class="result">
+      <p id="result-message"></p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

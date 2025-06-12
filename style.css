@@ -1,0 +1,258 @@
+/* RESET + BASE ==================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background-image: url("blackjack.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+/* LAYOUT ==================================== */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HEADER ==================================== */
+header {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #f0f0f0;
+  animation: glow 1.5s infinite alternate;
+  margin-bottom: 20px;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #007bff; }
+  50% { text-shadow: 0 0 20px #007bff; }
+  100% { text-shadow: 0 0 40px #007bff; }
+}
+
+/* GAME CONTAINER ============================ */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* WIN BOXES ================================= */
+.win, .win-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 123, 255, 0.85);
+  border-radius: 8px;
+  width: 140px;
+  height: 60px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 30px;
+}
+
+.win {
+  right: 10%;
+}
+
+.win-player {
+  left: 10%;
+}
+
+.totalwin-p, .totalwin-d {
+  text-align: center;
+}
+
+/* PLAYERS AREA ============================== */
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+.player {
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* CARDS ===================================== */
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 80px;
+  margin-bottom: 15px;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #aaa;
+  color: black;
+  padding: 12px 16px;
+  margin: 6px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  width: 50px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Georgia', serif;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card.red {
+  color: red;
+}
+
+/* SCORE BOX ================================= */
+.score {
+  background-color: #eaeaea;
+  border-radius: 8px;
+  height: 50px;
+  width: 150px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* CONTROLS / BUTTONS ========================= */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#btn-start {
+  background-color: #28a745;
+  width: 200px;
+  font-size: 1.2rem;
+}
+
+#btn-start:hover {
+  background-color: #218838;
+}
+
+#btn-reset {
+  background-color: #dc3545;
+  width: 200px;
+  font-size: 1.2rem;
+}
+
+#btn-reset:hover {
+  background-color: #c82333;
+}
+
+.start-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* RESULT ==================================== */
+.result {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f0f0f0;
+  min-height: 40px;
+}
+
+/* MEDIA QUERIES ============================= */
+@media (max-width: 768px) {
+  .players {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player {
+    width: 90%;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .score {
+    width: 90%;
+    margin-top: 10px;
+  }
+
+  .win, .win-player {
+    position: static;
+    margin-top: 10px;
+    width: 80%;
+  }
+}
